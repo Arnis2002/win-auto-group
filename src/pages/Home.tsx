@@ -191,16 +191,37 @@ export function Home() {
 
       {/* Photographic feature + process */}
       <section className="on-dark overflow-hidden bg-gradient-to-br from-forest-deep via-forest to-[#0E6175] text-ivory" aria-labelledby="details-title">
-        <figure>
-          <div className="relative aspect-[16/9] w-full overflow-hidden md:aspect-[21/9]">
-            <VehiclePhoto photo={editorialPhotos.feature} sizes="100vw" widths={[800, 1400, 2000, 2600]} className="h-full w-full object-cover" />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-forest-deep/35 via-transparent to-forest-deep/25" />
+        <div className={`${container} pt-10 sm:pt-14`}>
+          <motion.figure
+          initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mx-auto w-full max-w-6xl">
+          <div className="pointer-events-none absolute -inset-2 rounded-[2rem] bg-gradient-to-r from-aqua/35 via-sky/25 to-coral/35 opacity-70 blur-xl sm:-inset-3" />
+          <div className="group relative aspect-[16/9] overflow-hidden rounded-2xl border border-white/25 bg-forest shadow-[0_28px_80px_-32px_rgba(0,0,0,0.65)] sm:aspect-[21/9] sm:rounded-[1.75rem]">
+            <VehiclePhoto
+              photo={editorialPhotos.feature}
+              sizes="(min-width: 1280px) 1152px, (min-width: 768px) calc(100vw - 5rem), calc(100vw - 2rem)"
+              widths={[640, 960, 1280, 1600]}
+              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-forest-deep/75 via-transparent to-forest-deep/10" />
+            <div className="hero-orbit absolute left-4 top-4 rounded-full border border-white/25 bg-forest-deep/55 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white shadow-lg backdrop-blur-md sm:left-6 sm:top-6 sm:px-4 sm:py-2 sm:text-[11px]">
+              Featured from our inventory
+            </div>
+            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 sm:p-7">
+              <p className="font-serif text-xl text-white drop-shadow sm:text-3xl">
+                {editorialPhotos.feature.alt.replace(' listed by Win Auto Group', '')}
+              </p>
+              <span className="mb-0.5 h-1.5 w-12 shrink-0 rounded-full bg-gradient-to-r from-aqua via-sky to-coral sm:w-16" aria-hidden="true" />
+            </div>
           </div>
-          <figcaption className={`${container} pt-2`}>
+          <figcaption className="mt-3 px-1">
             <PhotoCredit photo={editorialPhotos.feature} tone="dark" prefix="Vehicle photo" />
           </figcaption>
-        </figure>
-        <div className={`${container} grid gap-12 py-16 lg:grid-cols-12 lg:py-20`}>
+          </motion.figure>
+        </div>
+        <div className={`${container} grid gap-12 py-14 lg:grid-cols-12 lg:py-20`}>
           <Reveal className="lg:col-span-5">
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-sun">Shop with confidence</p>
             <h2 id="details-title" className="font-serif text-[38px] leading-[1.08] tracking-[-0.01em] sm:text-[48px]">See the details before you make the trip.</h2>
